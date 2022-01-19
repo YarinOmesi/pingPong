@@ -1,5 +1,6 @@
 ﻿using pingPong.CoreAbstractions.Client;
 using pingPong.CoreAbstractions.Listener;
+using pingPong.TcpImplementations.Client;
 using System;
 using System.Net;
 using System.Net.Sockets;
@@ -30,9 +31,9 @@ namespace pingPong.TcpImplementations.Listener
                     HandleClient(client);
                 }
             }
-            catch
+            catch(Exception e)
             {
-
+                Console.WriteLine($"Error: {e.Message}");
             }
             finally
             {
@@ -42,7 +43,7 @@ namespace pingPong.TcpImplementations.Listener
         }
         private void HandleClient(TcpClient client)
         {
-            var handler = _clientHandlerFactory.Create();
+            var handler = _clientHandlerFactory.Create(new TcpWriter(client));
             var stream = client.GetStream();
             var buffer = new byte[1024];
             int bytesRead;
