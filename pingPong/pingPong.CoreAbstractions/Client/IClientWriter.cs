@@ -1,7 +1,7 @@
 ﻿
 namespace pingPong.CoreAbstractions.Client
 {
-    internal interface IClientWriter<T>
+    public interface IClientWriter<T>
     {
         void Write(T value);
     }
