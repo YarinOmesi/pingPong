@@ -23,7 +23,7 @@ namespace pingPong.SocketImplementation.Listener
         public void StartListening()
         {
             var server = new Socket(SocketType.Stream, ProtocolType.Tcp);
-            //server.Bind
+            server.Bind(new IPEndPoint(IPAddress.Any, _port));
 
             try
             {
