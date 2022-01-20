@@ -8,4 +8,8 @@
     <ProjectReference Include="..\pingPong.CoreAbstractions\pingPong.CoreAbstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Client\" />
+  </ItemGroup>
+
 </Project>
