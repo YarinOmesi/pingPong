@@ -8,4 +8,8 @@
     <Folder Include="Client\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\pingPong.SocketsAbstractions\pingPong.SocketsAbstractions.csproj" />
+  </ItemGroup>
+
 </Project>
