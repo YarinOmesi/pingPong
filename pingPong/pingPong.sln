@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pingPong.SocketsAbstraction
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SocketImplementations", "SocketImplementations", "{7168909D-E5E0-4242-BE76-2C9CC6AD8447}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pingPong.ClientImplementation", "pingPong.ClientImplementation\pingPong.ClientImplementation.csproj", "{1DC24AE2-64DB-4671-B5FD-52B0524AA591}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pingPong.ClientImplementation", "pingPong.ClientImplementation\pingPong.ClientImplementation.csproj", "{1DC24AE2-64DB-4671-B5FD-52B0524AA591}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pingPong.Logger", "pingPong.Logger\pingPong.Logger.csproj", "{DAFFE314-146D-446E-A050-DEE9E2249407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{1DC24AE2-64DB-4671-B5FD-52B0524AA591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1DC24AE2-64DB-4671-B5FD-52B0524AA591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1DC24AE2-64DB-4671-B5FD-52B0524AA591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAFFE314-146D-446E-A050-DEE9E2249407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAFFE314-146D-446E-A050-DEE9E2249407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAFFE314-146D-446E-A050-DEE9E2249407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAFFE314-146D-446E-A050-DEE9E2249407}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
