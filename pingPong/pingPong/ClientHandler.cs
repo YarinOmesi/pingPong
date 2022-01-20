@@ -1,22 +1,23 @@
 ﻿using pingPong.SocketsAbstractions;
 using System;
+using pingPong.Common;
 using pingPong.CoreAbstractions.Listener;
 
 namespace pingPong
 {
     public class ClientHandler : IClientHandler
     {
-        private readonly IObjectSocket<string> _socket;
+        private readonly IObjectSocket<Person> _socket;
 
-        public ClientHandler(IObjectSocket<string> socket)
+        public ClientHandler(IObjectSocket<Person> socket)
         {
             _socket = socket;
         }
 
         public void HandleClient()
         {
-            string value;
-            while((value = _socket.Receive()).Length > 0)
+            Person? value;
+            while((value = _socket.Receive())!=null)
             {
                 _socket.Send(value);
             }
