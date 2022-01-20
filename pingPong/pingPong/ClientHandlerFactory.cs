@@ -10,8 +10,8 @@ namespace pingPong
         private const int STRING_BUFFER_SIZE = 1024;
         public IClientHandler Create(ISocket socket)
         {
-            var stringSocket = new StringSocket(socket, STRING_BUFFER_SIZE);
-            var personSocket = new PersonSocket(stringSocket);
+            //var stringSocket = new StringSocket(socket, STRING_BUFFER_SIZE);
+            var personSocket = new PersonSocket(socket);
             return new ClientHandler(personSocket);
         }
     }

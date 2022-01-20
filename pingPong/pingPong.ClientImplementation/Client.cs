@@ -23,7 +23,7 @@ namespace pingPong.ClientImplementation
         {
             _logger.Debug($"Connecting to {ip}:{port}");
             var socket=_socketConnector.Connect(IPAddress.Parse(ip), port);
-            var personSocket = new PersonSocket(new StringSocket(socket, 1024));
+            var personSocket = new PersonSocket(socket);
             _logger.Debug("Connected");
             while(true)
             {

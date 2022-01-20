@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\pingPong.Logger\pingPong.Logger.csproj" />
     <ProjectReference Include="..\pingPong.SocketsAbstractions\pingPong.SocketsAbstractions.csproj" />
   </ItemGroup>
 
