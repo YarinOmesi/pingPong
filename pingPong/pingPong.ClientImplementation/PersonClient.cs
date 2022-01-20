@@ -1,14 +1,13 @@
 ﻿using System;
-using pingPong.Common;
 using pingPong.CoreAbstractions.Client;
-using pingPong.SocketsAbstractions;
+using pingPong.CoreAbstractions.Protocol;
 
 namespace pingPong.ClientImplementation
 {
     internal class PersonClient : ClientBase<Person>
     {
-        public PersonClient(IObjectSocket<Person> socket)
-            : base(socket, "PersonClient")
+
+        public PersonClient(IPacketProtocol protocol) : base(protocol, "PersonClient")
         {
         }
 
@@ -21,11 +20,12 @@ namespace pingPong.ClientImplementation
                 Console.WriteLine("Enter age");
                 var age = int.Parse(Console.ReadLine() ?? "0");
                 var person = new Person(name, age);
-                _socket.Send(person);
+                _protocol.Send(person);
 
-                var recved = _socket.Receive();
+                var recved = _protocol.Receive<Person>();
                 _logger.Info($"Received {recved}");
             }
         }
+
     }
 }
