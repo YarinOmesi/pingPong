@@ -24,9 +24,10 @@ namespace pingPong.CoreAbstractions.BaseImpl
 
         public void StartListening()
         {
-            var server = _serverSocketFactory.Create(IPAddress.Any,_port);
+            IServerSocket server = null;
             try
             {
+                server = _serverSocketFactory.Create(IPAddress.Any, _port);;
                 server.Start();
                 while (true)
                 {
@@ -46,7 +47,7 @@ namespace pingPong.CoreAbstractions.BaseImpl
             }
             finally
             {
-                server.Stop();
+                server?.Stop();
             }
         }
     }
