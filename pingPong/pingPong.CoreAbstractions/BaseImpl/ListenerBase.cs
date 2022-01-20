@@ -3,6 +3,8 @@ using pingPong.CoreAbstractions.Client;
 using pingPong.SocketsAbstractions;
 using System;
 using System.Net;
+using System.Threading.Tasks;
+using pingPong.Logger;
 
 namespace pingPong.CoreAbstractions.BaseImpl
 {
@@ -11,12 +13,14 @@ namespace pingPong.CoreAbstractions.BaseImpl
         private readonly int _port;
         private readonly IClientHandlerFactory<ISocket, byte[]> _clientHandlerFactory;
         private readonly IServerSocketFactory _serverSocketFactory;
+        private readonly ILogger _logger;
 
         public ListenerBase(int port, IClientHandlerFactory<ISocket, byte[]> clientHandlerFactory, IServerSocketFactory serverSocketFactory)
         {
             _port = port;
             _clientHandlerFactory = clientHandlerFactory;
             _serverSocketFactory = serverSocketFactory;
+            _logger = new Logger.Logger().GetLogger("BaseListener");
         }
 
         public void StartListening()
@@ -27,14 +31,19 @@ namespace pingPong.CoreAbstractions.BaseImpl
                 server.Start();
                 while (true)
                 {
+                    _logger.Debug("Waiting For Client...");
                     var client=server.AcceptClient();
+                    _logger.Debug("Client Connected");
                     var handler = _clientHandlerFactory.Create(new SocketWriter(client));
-                    handler.HandleClient(client);
+                    Task.Run(() =>
+                    {
+                        handler.HandleClient(client);
+                    });
                 }
             }
             catch(Exception e)
             {
-                Console.WriteLine($"Error {e.Message}");
+                _logger.Error("Error",e);
             }
             finally
             {
