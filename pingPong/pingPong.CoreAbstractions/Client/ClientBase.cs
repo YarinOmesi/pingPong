@@ -8,10 +8,10 @@ namespace pingPong.CoreAbstractions.Client
         protected readonly ILogger _logger;
         protected readonly IObjectSocket<T> _socket;
 
-        protected ClientBase( IObjectSocket<T> socket)
+        protected ClientBase( IObjectSocket<T> socket,string loggerName)
         {
             _socket = socket;
-            _logger = new Logger.Logger().GetLogger("Client");
+            _logger = new Logger.Logger().GetLogger(loggerName);
         }
 
         public abstract void Run();
