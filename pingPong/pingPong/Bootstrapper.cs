@@ -1,4 +1,5 @@
-﻿using pingPong.ClientHandlers.PersonHandlers;
+﻿using System.Net;
+using pingPong.ClientHandlers.PersonHandlers;
 using pingPong.CoreAbstractions.BaseImpl;
 using pingPong.SocketImplementation;
 
@@ -8,22 +9,17 @@ namespace pingPong
     {
         public void Bootstrapp(string [] args)
         {
-            var port = -1;
-            if(args.Length == 1 && int.TryParse(args[0],out int recvedPort))
+            if (args.Length == 1 && int.TryParse(args[0], out var port))
             {
-                port = recvedPort;
+                var handlerFactory = new PersonClientHandlerFactory();
+                var server = new SocketServer(IPAddress.Any, port);
+                var listener = new ListenerBase(server, handlerFactory);
+                listener.StartListening();
             }
             else
             {
                 System.Console.WriteLine("Usage: program.exe <port>");
-                return;
             }
-
-            var serverFactory = new SocketServerFactory();
-
-            var handlerFactory = new PersonClientHandlerFactory();
-            var listener = new ListenerBase(port,handlerFactory, serverFactory);
-            listener.StartListening();
         }
     }
 }
