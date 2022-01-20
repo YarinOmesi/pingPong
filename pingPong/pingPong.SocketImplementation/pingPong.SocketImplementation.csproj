@@ -9,8 +9,4 @@
     <ProjectReference Include="..\pingPong.SocketsAbstractions\pingPong.SocketsAbstractions.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Client\" />
-  </ItemGroup>
-
 </Project>
