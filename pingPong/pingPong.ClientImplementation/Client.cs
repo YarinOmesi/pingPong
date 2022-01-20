@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net;
 using System.Text;
+using pingPong.Common;
 using pingPong.CoreAbstractions.BaseImpl;
 using pingPong.Logger;
 using pingPong.SocketsAbstractions;
@@ -22,19 +23,20 @@ namespace pingPong.ClientImplementation
         {
             _logger.Debug($"Connecting to {ip}:{port}");
             var socket=_socketConnector.Connect(IPAddress.Parse(ip), port);
-            var stringSocket = new StringSocket(socket, 1024);
+            var personSocket = new PersonSocket(new StringSocket(socket, 1024));
             _logger.Debug("Connected");
-            string msg;
-            do
+            while(true)
             {
-                Console.WriteLine("Enter Message:");
-                msg = Console.ReadLine();
+                Console.WriteLine("Enter name:");
+                var name = Console.ReadLine();
+                Console.WriteLine("Enter age:");
+                var age = int.Parse(Console.ReadLine() ?? "0");
 
-                stringSocket.Send(msg);
-                var received = stringSocket.Receive();
+                var person = new Person(name, age);
+                personSocket.Send(person);
+                var received = personSocket.Receive();
                 Console.WriteLine($"Server Replied {received}");
-            } while (msg != "stop");
-            _logger.Debug("Ended");
+            } 
         }
     }
 }
