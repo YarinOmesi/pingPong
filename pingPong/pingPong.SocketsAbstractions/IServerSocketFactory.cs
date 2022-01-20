@@ -4,6 +4,6 @@ namespace pingPong.SocketsAbstractions
 {
     public interface IServerSocketFactory
     {
-        public IServerSocket Create(IPAddress address, int port);/
+        public IServerSocket Create(IPAddress address, int port);
     }
 }
