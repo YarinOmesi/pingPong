@@ -1,16 +1,16 @@
-﻿using pingPong.Logger;
-using pingPong.SocketsAbstractions;
+﻿using pingPong.CoreAbstractions.Protocol;
+using pingPong.Logger;
 
 namespace pingPong.CoreAbstractions.Client
 {
     public abstract class ClientBase<T>
     {
         protected readonly ILogger _logger;
-        protected readonly IObjectSocket<T> _socket;
+        protected readonly IPacketProtocol _protocol;
 
-        protected ClientBase( IObjectSocket<T> socket,string loggerName)
+        protected ClientBase(IPacketProtocol protocol, string loggerName)
         {
-            _socket = socket;
+            _protocol = protocol;
             _logger = new Logger.Logger().GetLogger(loggerName);
         }
 
