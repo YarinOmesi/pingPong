@@ -2,6 +2,7 @@
 
 namespace pingPong.Common
 {
+    [Serializable]
     public class Person
     {
         private string _name;
