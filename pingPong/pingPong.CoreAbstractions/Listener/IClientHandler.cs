@@ -1,8 +1,8 @@
 ﻿
-namespace pingPong.CoreAbstractions.Client
+namespace pingPong.CoreAbstractions.Listener
 {
-    public interface IClientHandler<T>
+    public interface IClientHandler
     {
-        public void HandleClient(T value);
+        public void HandleClient();
     }
 }

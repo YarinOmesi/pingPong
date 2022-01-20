@@ -1,8 +1,9 @@
-﻿
-namespace pingPong.CoreAbstractions.Client
+﻿using pingPong.SocketsAbstractions;
+
+namespace pingPong.CoreAbstractions.Listener
 {
-    public interface IClientHandlerFactory<TIn,TOut>
+    public interface IClientHandlerFactory
     {
-        IClientHandler<TIn> Create(IClientWriter<TOut> writer);
+        IClientHandler Create(ISocket socket);
     }
 }
