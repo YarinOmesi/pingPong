@@ -1,19 +1,24 @@
-﻿using pingPong.CoreAbstractions.Client;
-using pingPong.SocketsAbstractions;
+﻿using pingPong.SocketsAbstractions;
 using System;
+using pingPong.CoreAbstractions.Listener;
 
 namespace pingPong
 {
-    public class ClientHandler : IClientHandler<ISocket>
+    public class ClientHandler : IClientHandler
     {
-        public void HandleClient(ISocket socket)
+        private readonly IObjectSocket<string> _socket;
+
+        public ClientHandler(IObjectSocket<string> socket)
         {
-            var buffer = new byte[1024];
-            int byteRead;
-            while((byteRead= socket.Receive(buffer)) > 0)
+            _socket = socket;
+        }
+
+        public void HandleClient()
+        {
+            string value;
+            while((value = _socket.Receive()).Length > 0)
             {
-                var span = new Span<byte>(buffer, 0, byteRead);
-                socket.Send(span.ToArray());
+                _socket.Send(value);
             }
         }
     }

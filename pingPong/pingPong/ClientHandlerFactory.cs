@@ -1,18 +1,15 @@
-﻿using pingPong.CoreAbstractions.Client;
-using pingPong.SocketsAbstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using pingPong.SocketsAbstractions;
+using pingPong.CoreAbstractions.BaseImpl;
+using pingPong.CoreAbstractions.Listener;
 
 namespace pingPong
 {
-    internal class ClientHandlerFactory : IClientHandlerFactory<ISocket, byte[]>
+    internal class ClientHandlerFactory : IClientHandlerFactory
     {
-        public IClientHandler<ISocket> Create(IClientWriter<byte[]> writer)
+        private const int STRING_BUFFER_SIZE = 1024;
+        public IClientHandler Create(ISocket socket)
         {
-            return new ClientHandler();
+            return new ClientHandler(new StringSocket(socket,STRING_BUFFER_SIZE));
         }
     }
 }
