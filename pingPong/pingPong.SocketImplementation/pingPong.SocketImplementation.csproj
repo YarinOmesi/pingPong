@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\pingPong.CoreAbstractions\pingPong.CoreAbstractions.csproj" />
     <ProjectReference Include="..\pingPong.SocketsAbstractions\pingPong.SocketsAbstractions.csproj" />
   </ItemGroup>
 
