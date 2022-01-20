@@ -21,5 +21,10 @@ namespace pingPong.SocketImplementation
         {
             _client.Send(data);
         }
+
+        public void Close()
+        {
+            _client.Close();
+        }
     }
 }

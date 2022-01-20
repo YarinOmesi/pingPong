@@ -21,5 +21,9 @@ namespace pingPong.TcpImplementations
         {
             _client.GetStream().Write(data, 0, data.Length);
         }
+        public void Close()
+        {
+            _client.Close();
+        }
     }
 }
