@@ -1,28 +1,40 @@
-﻿using pingPong.SocketsAbstractions;
-using pingPong.Common;
+﻿using System;
+using pingPong.ClientImplementation;
 using pingPong.CoreAbstractions.Listener;
+using pingPong.CoreAbstractions.Protocol;
 using pingPong.Logger;
 
 namespace pingPong.ClientHandlers.PersonHandlers
 {
     public class PersonClientHandler : IClientHandler
     {
-        private readonly IObjectSocket<Person> _socket;
+        private readonly IPacketProtocol _protocol;
         private readonly ILogger _logger;
 
-        public PersonClientHandler(IObjectSocket<Person> socket)
+        public PersonClientHandler(IPacketProtocol protocol)
         {
-            _socket = socket;
+            _protocol = protocol;
             _logger=new Logger.Logger().GetLogger("PersonClientHandler");
         }
 
         public void HandleClient()
         {
-            Person? value;
-            while((value = _socket.Receive())!=null)
+            try
             {
-                _logger.Debug($"recv: [{value}]");
-                _socket.Send(value);
+                while (true)
+                {
+                    var receivedPerson = _protocol.Receive<Person>();
+                    _logger.Info($"Received {receivedPerson}");
+                    _protocol.Send(receivedPerson);
+                }
+            }
+            catch (Exception e)
+            {
+                _logger.Error("Error", e);
+            }
+            finally
+            {
+                _protocol.Close();
             }
         }
     }

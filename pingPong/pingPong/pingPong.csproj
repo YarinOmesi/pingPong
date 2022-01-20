@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\pingPong.ClientImplementation\pingPong.ClientImplementation.csproj" />
     <ProjectReference Include="..\pingPong.CoreAbstractions\pingPong.CoreAbstractions.csproj" />
     <ProjectReference Include="..\pingPong.SocketImplementation\pingPong.SocketImplementation.csproj" />
   </ItemGroup>
