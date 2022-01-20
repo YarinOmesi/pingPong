@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using pingPong.ClientHandlers.PersonHandlers;
+using pingPong.ClientImplementation;
 using pingPong.CoreAbstractions.BaseImpl;
 using pingPong.SocketImplementation;
 
@@ -11,7 +12,9 @@ namespace pingPong
         {
             if (args.Length == 1 && int.TryParse(args[0], out var port))
             {
-                var handlerFactory = new PersonClientHandlerFactory();
+                var conversionCreator = new PersonClientConversionCreator();
+
+                var handlerFactory = new PersonClientHandlerFactory(conversionCreator.Create());
                 var server = new SocketServer(IPAddress.Any, port);
                 var listener = new ListenerBase(server, handlerFactory);
                 listener.StartListening();
