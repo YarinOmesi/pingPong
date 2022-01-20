@@ -3,17 +3,17 @@ using pingPong.Common;
 using pingPong.CoreAbstractions.Listener;
 using pingPong.Logger;
 
-namespace pingPong
+namespace pingPong.ClientHandlers.PersonHandlers
 {
-    public class ClientHandler : IClientHandler
+    public class PersonClientHandler : IClientHandler
     {
         private readonly IObjectSocket<Person> _socket;
         private readonly ILogger _logger;
 
-        public ClientHandler(IObjectSocket<Person> socket)
+        public PersonClientHandler(IObjectSocket<Person> socket)
         {
             _socket = socket;
-            _logger=new Logger.Logger().GetLogger("ClientHandler");
+            _logger=new Logger.Logger().GetLogger("PersonClientHandler");
         }
 
         public void HandleClient()
