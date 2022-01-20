@@ -1,7 +1,7 @@
 ﻿
 namespace pingPong.CoreAbstractions.Listener
 {
-    public interface IClientListener
+    public interface IListener
     {
         void StartListening();
     }

@@ -7,7 +7,7 @@ using System.Net.Sockets;
 
 namespace pingPong.TcpImplementations.Listener
 {
-    public class TcpClientListener : IClientListener
+    public class TcpClientListener : IListener
     {
         private readonly int _port;
         private readonly IClientHandlerFactory<byte[], byte[]> _clientHandlerFactory;

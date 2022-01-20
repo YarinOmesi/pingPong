@@ -1,5 +1,4 @@
-﻿
-using pingPong.CoreAbstractions.Listener;
+﻿using pingPong.CoreAbstractions.Listener;
 using pingPong.CoreAbstractions.Client;
 using System.Net;
 using System.Net.Sockets;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace pingPong.SocketImplementation.Listener
 {
-    public class SocketListener : IClientListener
+    public class SocketListener : IListener
     {
         private readonly int _port;
         private readonly IClientHandlerFactory<byte[], byte[]> _clientHandlerFactory;
