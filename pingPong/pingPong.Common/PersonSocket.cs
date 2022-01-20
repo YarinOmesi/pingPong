@@ -1,29 +1,37 @@
 ﻿
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text.Json;
+using pingPong.Logger;
 using pingPong.SocketsAbstractions;
 
 namespace pingPong.Common
 {
     public class PersonSocket:IObjectSocket<Person>
     {
-        private readonly IObjectSocket<string> _stringSocket;
-
-        public PersonSocket(IObjectSocket<string> stringSocket)
+        private readonly ISocket _socket;
+        private readonly ILogger _logger;
+        private readonly BinaryFormatter _formatter;
+        public PersonSocket(ISocket socket)
         {
-            _stringSocket = stringSocket;
+            _socket = socket;
+            _formatter = new BinaryFormatter();
+            _logger = new Logger.Logger().GetLogger("PersonSocket");
         }
 
         public Person Receive()
         {
-            var json = _stringSocket.Receive();
-
-            return JsonSerializer.Deserialize<Person>(json);
+            var buffer = new byte[512];
+            var memoryStream = new MemoryStream(buffer);
+            var byteRead = _socket.Receive(buffer);
+            return _formatter.Deserialize(memoryStream) as Person;
         }
 
         public void Send(Person value)
         {
-            var json = JsonSerializer.Serialize(value);
-            _stringSocket.Send(json);
+            var memoryStream = new MemoryStream();
+            _formatter.Serialize(memoryStream, value);
+            _socket.Send(memoryStream.ToArray());
         }
     }
 }
