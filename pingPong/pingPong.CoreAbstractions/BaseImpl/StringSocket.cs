@@ -7,26 +7,28 @@ namespace pingPong.CoreAbstractions.BaseImpl
     {
         private readonly byte[] _buffer;
         private readonly Encoding _encoding;
+        private readonly ISocket _socket;
 
-        public StringSocket(int bufferSize,Encoding encoding)
+        public StringSocket(ISocket socket,int bufferSize,Encoding encoding )
         {
             _encoding = encoding;
+            _socket = socket;
             _buffer = new byte[bufferSize];
         }
-        public StringSocket(int bufferSize):this(bufferSize,Encoding.UTF8)
+        public StringSocket(ISocket socket,int bufferSize):this(socket,bufferSize,Encoding.UTF8)
         {
         }
 
-        public string Receive(ISocket socket)
+        public string Receive()
         {
-            var bytesRead=socket.Receive(_buffer);
+            var bytesRead=_socket.Receive(_buffer);
             return _encoding.GetString(_buffer, 0, bytesRead);
         }
 
-        public void Send(ISocket socket, string value)
+        public void Send(string value)
         {
             var asBytes = _encoding.GetBytes(value);
-            socket.Send(asBytes);
+            _socket.Send(asBytes);
         }
     }
 }
