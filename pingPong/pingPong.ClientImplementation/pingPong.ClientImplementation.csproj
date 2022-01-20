@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\pingPong.Common\pingPong.Common.csproj" />
     <ProjectReference Include="..\pingPong.CoreAbstractions\pingPong.CoreAbstractions.csproj" />
     <ProjectReference Include="..\pingPong.Logger\pingPong.Logger.csproj" />
     <ProjectReference Include="..\pingPong.SocketImplementation\pingPong.SocketImplementation.csproj" />
