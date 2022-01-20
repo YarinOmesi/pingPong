@@ -6,7 +6,8 @@ namespace pingPong
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var bootstrapper = new Bootstrapper();
+            bootstrapper.Bootstrapp(args);
         }
     }
 }
