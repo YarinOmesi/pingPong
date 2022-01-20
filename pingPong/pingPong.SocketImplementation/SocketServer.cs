@@ -14,6 +14,7 @@ namespace pingPong.SocketImplementation
         {
             _addr = addr;
             _port = port;
+            _server = new Socket(SocketType.Stream,ProtocolType.Tcp);
         }
 
         public ISocket AcceptClient()
